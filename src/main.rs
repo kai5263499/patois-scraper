@@ -28,8 +28,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let td_selector = Selector::parse("td").unwrap();  // Create the Selector outside the loop
 
     let args: Vec<String> = std::env::args().collect();
-    let scrape_all_words = args.contains(&"--scrape-all-words".to_string());
-    let scrape_lost_words = args.contains(&"--scrape-lost-words".to_string());
+    let scrape_all_words = args.contains(&"--phrontistery-all-words".to_string());
+    let scrape_lost_words = args.contains(&"--phrontistery-lost-words".to_string());
 
     if scrape_all_words {
         
@@ -116,7 +116,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let json_data = json!({ "allWords": all_words, "lostWords": all_lost_words });
 
-    let file_name = "pronthist.json";
+    let file_name = "data/phrontistery.json";
     let mut file = File::create(file_name)?;
     writeln!(file, "{}", to_string_pretty(&json_data)?)?;
     println!("Data saved to {}", file_name);
